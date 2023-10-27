@@ -69,14 +69,17 @@ if res != "":
         except KeyboardInterrupt:
             pass
 
-# else:
-#     async def main(bot_token):
-#         # chatid=await get_chat_id(bot_token)
-#         await send('737340891','no movie released today',bot_token)
-# if __name__ == '__main__':
-#     try:
-#         asyncio.get_event_loop().run_until_complete(main(bot_token))
-#     except KeyboardInterrupt:
-#         pass
+else:
+    async def main(bot_token):
+        # chatid=await get_chat_id(bot_token)
+        await send('737340891','no movie released today',bot_token)
+    if __name__ == '__main__':
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        try:
+            loop.run_until_complete(main(bot_token))
+        # asyncio.get_event_loop().run_until_complete(main(bot_token))
+        except KeyboardInterrupt:
+            pass
 
 
