@@ -36,7 +36,7 @@ clean_data = {key: [value.replace('\n', '') for value in values] for key, values
 
 #searching dictionary through dpath
 search = dpath.search(clean_data,'*'+month.capitalize()+' '+str(date)+'*', separator=",")
-print(json.dumps(search, indent=4, sort_keys=False))
+# print(json.dumps(search, indent=4, sort_keys=False))
 clean_1=json.dumps(search, indent=4, sort_keys=False)
 characters_to_remove = ['{', '}', '[', ']']
 translation_table = str.maketrans('', '', ''.join(characters_to_remove))
@@ -61,13 +61,22 @@ if res != "":
         # chatid=await get_chat_id(bot_token)
         await send('737340891',str(mes),bot_token)
     if __name__ == '__main__':
-        asyncio.get_event_loop().run_until_complete(main(res,bot_token))
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        try:
+            loop.run_until_complete(main(res,bot_token))
+            # asyncio.get_event_loop().run_until_complete(main(res,bot_token))
+        except KeyboardInterrupt:
+            pass
 
-else:
-    async def main(bot_token):
-        # chatid=await get_chat_id(bot_token)
-        await send('737340891','no movie released today',bot_token)
-if __name__ == '__main__':
-    asyncio.get_event_loop().run_until_complete(main(bot_token))
+# else:
+#     async def main(bot_token):
+#         # chatid=await get_chat_id(bot_token)
+#         await send('737340891','no movie released today',bot_token)
+# if __name__ == '__main__':
+#     try:
+#         asyncio.get_event_loop().run_until_complete(main(bot_token))
+#     except KeyboardInterrupt:
+#         pass
 
 
